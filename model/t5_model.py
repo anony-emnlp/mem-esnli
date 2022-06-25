@@ -628,7 +628,7 @@ class T5Adapter(nn.Module):
     def __init__(self, dim_size, latent_size,out_size,config=None):
         super().__init__()
 
-        # self.layer_norm_adapter = T5LayerNorm(dim_size, eps=config.layer_norm_epsilon)
+
 
         self.autoencoder = nn.Sequential(
                         nn.Linear(dim_size*2, latent_size),
@@ -643,7 +643,7 @@ class T5Adapter(nn.Module):
         adapter_input,
     ):
         concat = torch.cat((input_,adapter_input),dim=-1)
-        # normed_hidden = self.layer_norm_adapter(concat)
+
        
         recon_ = self.autoencoder(concat)
         
@@ -666,9 +666,9 @@ class T5MemoryNet(nn.Module):
         
         self.longest_hidden = 64
         self.project_down   = nn.Linear(773,self.model_dim_size,bias=False)
-        # self.project_up     = nn.Linear(self.longest_hidden,template.shape[0],bias=False)
+
         self.embedding_template = nn.Linear(387, self.model_dim_size)
-        # self.concat_encode = nn.Linear(self.model_dim_size*2, self.model_dim_size)
+
 
 
     def reshape_batch(self,idx):
@@ -746,7 +746,7 @@ class T5MemoryNet(nn.Module):
         
         # template attention
         unnorm_sparse_attention = torch.matmul(template,q)
-        # unnorm_sparse_attention = sparse_attention.transpose(1,2)
+
         unnorm_attention_padding = self.sent_label_padding(sent_label)
         unnorm_attention= unnorm_sparse_attention*unnorm_attention_padding
         unnorm_sparse_attention = self.zero_padding(unnorm_sparse_attention)
