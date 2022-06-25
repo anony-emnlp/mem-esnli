@@ -23,7 +23,7 @@ The script provides feature the inputs for running the testing
 ```bash
 bash ./scripts/test.sh $SIZE $SAVE_LOC $DATA_LOC $EVAL_BATCH $RUN_CKPT
 ```
-Evaluate the best checkpoint by changing the $RUN_CKPT,
+Evaluate the best checkpoint by changing the $RUN_CKPT
 ```bash
 bash ./scripts/test.sh 300 $SAVE_LOC data $EVAL_BATCH $RUN_CKPT
 ```
